@@ -86,6 +86,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY,       		XK_z,    spawn,          CMD("tabbed -c zathura -e") },
+	{ MODKEY,       		XK_g,    spawn,          CMD("./Documents/googler/googler") },
 
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
