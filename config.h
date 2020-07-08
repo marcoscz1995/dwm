@@ -52,6 +52,7 @@ static const Layout layouts[] = {
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
+#define CMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -72,10 +73,10 @@ static Key keys[] = {
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY|ShiftMask,             XK_l,      setmfact,       {.f = +0.05} },
-	{ MODKEY|ShiftMask,             XK_k,      setsmfact,      {.f = +0.05} },
-	{ MODKEY|ShiftMask,             XK_j,      setsmfact,      {.f = -0.05} },
-	{ MODKEY|ShiftMask,             XK_i,      setcfact,       {.f = +0.25} },
-	{ MODKEY|ShiftMask,             XK_u,      setcfact,       {.f = -0.25} },
+	{ MODKEY|ShiftMask,             XK_i,      setsmfact,      {.f = +0.05} },
+	{ MODKEY|ShiftMask,             XK_u,      setsmfact,      {.f = -0.05} },
+	{ MODKEY|ShiftMask,             XK_k,      setcfact,       {.f = +0.25} },
+	{ MODKEY|ShiftMask,             XK_j,      setcfact,       {.f = -0.25} },
 	{ MODKEY|ShiftMask,             XK_o,      setcfact,       {.f =  0.00} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
@@ -91,6 +92,10 @@ static Key keys[] = {
 	{ MODKEY,                       XK_l, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	/* Apps Launched with SUPER + ALT + KEY */
+	{ MODKEY,       		XK_z,    spawn,          CMD("tabbed -c zathura -e") },
+	{ MODKEY,       		XK_g,    spawn,          CMD("Documents/googler/googler") },
+
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
