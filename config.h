@@ -95,6 +95,7 @@ static Key keys[] = {
 	/* Apps Launched with SUPER + ALT + KEY */
 	{ MODKEY,       		XK_z,    spawn,          CMD("tabbed -c zathura -e") },
 	{ MODKEY,       		XK_g,    spawn,          CMD("Documents/googler/googler") },
+	{ MODKEY,       		XK_r,    spawn,          CMD("st -e ranger") },
 
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
