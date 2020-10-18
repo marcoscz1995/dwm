@@ -101,7 +101,7 @@ static Key keys[] = {
 	{ MODKEY,       		XK_d,    spawn,          CMD("Documents/googler/duck") },
 	{ MODKEY,       		XK_g,    spawn,          CMD("Documents/googler/googler") },
 	{ MODKEY,       		XK_r,    spawn,          CMD("st -e ranger") },
-	{ MODKEY,       		XK_s,    spawn,          CMD("tabbed surf -pe") },
+	{ MODKEY,       		XK_c,    spawn,          CMD("setxkbmap -layout us -option ctrl:nocaps") },
 
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)

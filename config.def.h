@@ -34,7 +34,7 @@ static const Rule rules[] = {
 /* layout(s) */
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static const float smfact     = 0.00; /* factor of tiled clients [0.00..0.95] */
-static const int nmaster     = 2;    /* number of clients in master area */
+static const int nmaster     = 4;    /* number of clients in master area */
 static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 
 static const Layout layouts[] = {
@@ -60,6 +60,9 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
+#include <X11/XF86keysym.h>
+#include "shiftview.c"
+#include "transient.c"
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -70,6 +73,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
 	{ MODKEY|ShiftMask,              XK_d,      incnmaster,     {.i = -1 } },
+	{ MODKEY|ShiftMask,              XK_s,      incnmaster,     {.i = 0.00 } },
 	{ MODKEY|ShiftMask,             XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY|ShiftMask,             XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY|ShiftMask,             XK_i,      setsmfact,      {.f = +0.05} },
@@ -77,6 +81,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_k,      setcfact,       {.f = +0.25} },
 	{ MODKEY|ShiftMask,             XK_j,      setcfact,       {.f = -0.25} },
 	{ MODKEY|ShiftMask,             XK_o,      setcfact,       {.f =  0.00} },
+	{ MODKEY,             		XK_semicolon, shiftview,       {.i =  -1} },
+	{ MODKEY,             		XK_apostrophe, shiftview,       {.i =  1} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
@@ -96,7 +102,7 @@ static Key keys[] = {
 	{ MODKEY,       		XK_d,    spawn,          CMD("Documents/googler/duck") },
 	{ MODKEY,       		XK_g,    spawn,          CMD("Documents/googler/googler") },
 	{ MODKEY,       		XK_r,    spawn,          CMD("st -e ranger") },
-	{ MODKEY,       		XK_s,    spawn,          CMD("tabbed surf -pe") },
+	{ MODKEY,       		XK_c,    spawn,          CMD("setxkbmap -layout us -option ctrl:nocaps") },
 
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
