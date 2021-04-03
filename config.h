@@ -66,7 +66,7 @@ static const char *termcmd[]  = { "st", NULL };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY|ShiftMask,             XK_Return, spawn,          CMD("st") },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -98,10 +98,10 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	/* Apps Launched with SUPER + ALT + KEY */
 	{ MODKEY,       		XK_z,    spawn,          CMD("tabbed -c zathura -e") },
-	{ MODKEY,       		XK_d,    spawn,          CMD("Documents/googler/duck") },
+	{ MODKEY,       		XK_d,    spawn,          CMD("cd ~/pdf_files && ls -Art | tail -n 1 | xargs -d '\n' -I {} tabbed -c zathura {} -e") },
 	{ MODKEY,       		XK_g,    spawn,          CMD("Documents/googler/googler") },
 	{ MODKEY,       		XK_r,    spawn,          CMD("st -e ranger") },
-	{ MODKEY,       		XK_c,    spawn,          CMD("setxkbmap -layout us -option ctrl:nocaps") },
+	{ MODKEY|ControlMask,       		XK_c,    spawn,          CMD("setxkbmap -layout us -option ctrl:nocaps") },
 
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
